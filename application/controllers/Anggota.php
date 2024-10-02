@@ -2,13 +2,13 @@
 class Anggota extends CI_Controller{
 	function __construct(){
 		parent::__construct();
-		$this->load->model('m_guru');
+		$this->load->model('m_anggota');
 		$this->load->model('m_pengunjung');
 		$this->m_pengunjung->count_visitor();
 	}
 	function index(){
         
-		$jum=$this->m_guru->guru();
+		$jum=$this->m_anggota->anggota();
         $page=$this->uri->segment(3);
         if(!$page):
             $offset = 0;
@@ -16,7 +16,7 @@ class Anggota extends CI_Controller{
             $offset = $page;
         endif;
         $limit=8;
-        $config['base_url'] = base_url() . 'guru/index/';
+        $config['base_url'] = base_url() . 'anggota/index/';
             $config['total_rows'] = $jum->num_rows();
             $config['per_page'] = $limit;
             $config['uri_segment'] = 3;
@@ -43,8 +43,8 @@ class Anggota extends CI_Controller{
             $this->pagination->initialize($config);
         
             $this->data['page'] =$this->pagination->create_links();
-            $this->data['data']=$this->m_guru->guru_perpage($offset,$limit);
-            $this->data['main_view']   = 'depan/v_guru';
+            $this->data['data']=$this->m_anggota->anggota_perpage($offset,$limit);
+            $this->data['main_view']   = 'depan/v_anggota';
             $this->load->view('theme/template',$this->data);
 	}
 

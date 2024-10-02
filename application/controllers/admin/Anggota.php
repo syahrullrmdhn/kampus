@@ -1,12 +1,12 @@
 <?php
-class Guru extends CI_Controller{
+class Anggota extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		if($this->session->userdata('masuk') !=TRUE){
             $url=base_url('administrator');
             redirect($url);
         };
-		$this->load->model('m_guru');
+		$this->load->model('m_anggota');
 		$this->load->model('m_pengguna');
 		$this->load->library('upload');
 	}
@@ -14,11 +14,11 @@ class Guru extends CI_Controller{
 
 	function index(){
         
-		$this->data['data']=$this->m_guru->get_all_guru();
+		$this->data['data']=$this->m_anggota->get_all_anggota();
         
-        $this->data['breadcrumb']  = 'Data Guru';
+        $this->data['breadcrumb']  = 'Data anggota';
             
-        $this->data['main_view']   = 'admin/v_guru';
+        $this->data['main_view']   = 'admin/v_anggota';
             
         $this->load->view('theme/admintemplate',$this->data);
         
@@ -26,7 +26,7 @@ class Guru extends CI_Controller{
         
 	}
 	
-	function simpan_guru(){
+	function simpan_anggota(){
 				$config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -53,34 +53,34 @@ class Guru extends CI_Controller{
 							$nip=strip_tags($this->input->post('xnip'));
 							$nama=strip_tags($this->input->post('xnama'));
 							$jenkel=strip_tags($this->input->post('xjenkel'));
-							$tmp_lahir=strip_tags($this->input->post('xtmp_lahir'));
-							$tgl_lahir=strip_tags($this->input->post('xtgl_lahir'));
-							$mapel=strip_tags($this->input->post('xmapel'));
+							$prodi=strip_tags($this->input->post('xprodi'));
+							$angkatan=strip_tags($this->input->post('xangkatan'));
+							$bidang=strip_tags($this->input->post('xbidang'));
 
-							$this->m_guru->simpan_guru($nip,$nama,$jenkel,$tmp_lahir,$tgl_lahir,$mapel,$photo);
+							$this->m_anggota->simpan_anggota($nip,$nama,$jenkel,$prodi,$angkatan,$bidang,$photo);
 							echo $this->session->set_flashdata('msg','success');
-							redirect('admin/guru');
+							redirect('admin/anggota');
 					}else{
 	                    echo $this->session->set_flashdata('msg','warning');
-	                    redirect('admin/guru');
+	                    redirect('admin/anggota');
 	                }
 	                 
 	            }else{
 	            	$nip=strip_tags($this->input->post('xnip'));
 					$nama=strip_tags($this->input->post('xnama'));
 					$jenkel=strip_tags($this->input->post('xjenkel'));
-					$tmp_lahir=strip_tags($this->input->post('xtmp_lahir'));
-					$tgl_lahir=strip_tags($this->input->post('xtgl_lahir'));
-					$mapel=strip_tags($this->input->post('xmapel'));
+					$prodi=strip_tags($this->input->post('xprodi'));
+					$angkatan=strip_tags($this->input->post('xangkatan'));
+					$bidang=strip_tags($this->input->post('xbidang'));
 
-					$this->m_guru->simpan_guru_tanpa_img($nip,$nama,$jenkel,$tmp_lahir,$tgl_lahir,$mapel);
+					$this->m_anggota->simpan_anggota_tanpa_img($nip,$nama,$jenkel,$prodi,$angkatan,$bidang);
 					echo $this->session->set_flashdata('msg','success');
-					redirect('admin/guru');
+					redirect('admin/anggota');
 				}
 				
 	}
 	
-	function update_guru(){
+	function update_anggota(){
 				
 	            $config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
@@ -112,17 +112,17 @@ class Guru extends CI_Controller{
 							$nip=strip_tags($this->input->post('xnip'));
 							$nama=strip_tags($this->input->post('xnama'));
 							$jenkel=strip_tags($this->input->post('xjenkel'));
-							$tmp_lahir=strip_tags($this->input->post('xtmp_lahir'));
-							$tgl_lahir=strip_tags($this->input->post('xtgl_lahir'));
-							$mapel=strip_tags($this->input->post('xmapel'));
+							$prodi=strip_tags($this->input->post('xprodi'));
+							$angkatan=strip_tags($this->input->post('xangkatan'));
+							$bidang=strip_tags($this->input->post('xbidang'));
 
-							$this->m_guru->update_guru($kode,$nip,$nama,$jenkel,$tmp_lahir,$tgl_lahir,$mapel,$photo);
+							$this->m_anggota->update_anggota($kode,$nip,$nama,$jenkel,$prodi,$angkatan,$bidang,$photo);
 							echo $this->session->set_flashdata('msg','info');
-							redirect('admin/guru');
+							redirect('admin/anggota');
 	                    
 	                }else{
 	                    echo $this->session->set_flashdata('msg','warning');
-	                    redirect('admin/guru');
+	                    redirect('admin/anggota');
 	                }
 	                
 	            }else{
@@ -130,24 +130,24 @@ class Guru extends CI_Controller{
 							$nip=strip_tags($this->input->post('xnip'));
 							$nama=strip_tags($this->input->post('xnama'));
 							$jenkel=strip_tags($this->input->post('xjenkel'));
-							$tmp_lahir=strip_tags($this->input->post('xtmp_lahir'));
-							$tgl_lahir=strip_tags($this->input->post('xtgl_lahir'));
-							$mapel=strip_tags($this->input->post('xmapel'));
-							$this->m_guru->update_guru_tanpa_img($kode,$nip,$nama,$jenkel,$tmp_lahir,$tgl_lahir,$mapel);
+							$prodi=strip_tags($this->input->post('xprodi'));
+							$angkatan=strip_tags($this->input->post('xangkatan'));
+							$bidang=strip_tags($this->input->post('xbidang'));
+							$this->m_anggota->update_anggota_tanpa_img($kode,$nip,$nama,$jenkel,$prodi,$angkatan,$bidang);
 							echo $this->session->set_flashdata('msg','info');
-							redirect('admin/guru');
+							redirect('admin/anggota');
 	            } 
 
 	}
 
-	function hapus_guru(){
+	function hapus_anggota(){
 		$kode=$this->input->post('kode');
 		$gambar=$this->input->post('gambar');
 		$path='./assets/images/'.$gambar;
 		unlink($path);
-		$this->m_guru->hapus_guru($kode);
+		$this->m_anggota->hapus_anggota($kode);
 		echo $this->session->set_flashdata('msg','success-hapus');
-		redirect('admin/guru');
+		redirect('admin/anggota');
 	}
 
 }

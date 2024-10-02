@@ -19,9 +19,9 @@
       </li>
     
     <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'admin/guru'?>">
+        <a class="nav-link" href="<?php echo base_url().'admin/anggota'?>">
           <i class="fas fa-fw fa-address-book"></i>
-          <span>Data Guru</span></a>
+          <span>Data Anggota</span></a>
       </li>
     
     <li class="nav-item">
@@ -41,10 +41,10 @@
           <i class="fas fa-fw fa-download"></i>
           <span>Data Download</span></a>
       </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url().'admin/mapel'?>">
           <i class="fas fa-fw fa-address-book"></i>
-          <span>Data Mapel</span></a>
+          <span>Data Mapel</span></a> -->
       </li>
     <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url().'admin/video'?>">

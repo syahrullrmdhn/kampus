@@ -2,7 +2,11 @@
 class M_pengunjung extends CI_Model{
 
 	function statistik_pengujung(){
-        $query = $this->db->query("SELECT DATE_FORMAT(pengunjung_tanggal,'%d') AS tgl,COUNT(pengunjung_ip) AS jumlah FROM tbl_pengunjung WHERE MONTH(pengunjung_tanggal)=MONTH(CURDATE()) GROUP BY DATE(pengunjung_tanggal)");
+        $query = $this->db->query("SELECT DATE_FORMAT(pengunjung_tanggal, '%d') AS tgl, COUNT(pengunjung_ip) AS jumlah 
+FROM tbl_pengunjung 
+WHERE MONTH(pengunjung_tanggal) = MONTH(CURDATE()) 
+GROUP BY DATE(pengunjung_tanggal), pengunjung_tanggal
+");
 
         if($query->num_rows() > 0){
             foreach($query->result() as $data){
